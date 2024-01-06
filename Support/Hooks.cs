@@ -32,6 +32,7 @@ namespace HumanforceWebAutomation.Support
             _driver = _driverFactory.CreateDriver();
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             _driver.Manage().Window.Maximize();
+            ScenarioContext.Current["WebDriver"] = _driver;
             _objectContainer.RegisterInstanceAs(_driver);
         }
 
@@ -43,7 +44,7 @@ namespace HumanforceWebAutomation.Support
             if (scenarioContext.TestError != null)
             {
                 // Save the screenshot with a unique name
-                _driver.TakeScreenshot().SaveAsFile(Path.Combine("..", "..", "TestResults", $"{scenarioContext.ScenarioInfo.Title}.png"), ScreenshotImageFormat.png);
+               // _driver.TakeScreenshot().SaveAsFile(Path.Combine("..", "..", "TestResults", $"{scenarioContext.ScenarioInfo.Title}.png"), ScreenshotImageFormat.png);
             }
             _driver?.Dispose();
         }
