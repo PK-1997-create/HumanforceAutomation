@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
+using OpenQA.Selenium.Interactions;
 
 namespace HumanforceAutomation.PageObjects
 {
@@ -66,6 +67,77 @@ namespace HumanforceAutomation.PageObjects
             IJavaScriptExecutor js = (IJavaScriptExecutor)Driver;
             js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
         }
+
+        public void ClosePopup()
+        {
+            try
+            {
+                By cancelButtonLocator = By.XPath("//div[contains(text(),'×')]");
+                ClickElement(cancelButtonLocator);
+            }
+            catch
+            {
+                Console.WriteLine("Greeting popup was not displayed. Proceeding...");
+            }
+        }
+
+        public bool IsPopupInsideIframeDisplayed(By iframeLocator, By popupLocator)
+        {
+            // Switch to the iframe
+            IWebElement iframeElement = Driver.FindElement(iframeLocator);
+            Driver.SwitchTo().Frame(iframeElement);
+            Thread.Sleep(5000);
+
+            // Check if the popup is displayed
+            bool isPopupDisplayed = Driver.FindElement(popupLocator).Displayed;
+
+            return isPopupDisplayed;
+        }
+        public void SwitchToNewTab(HashSet<string> windowHandlesBefore)
+        {
+            // Wait for the new tab to open by checking for an increase in window handles
+            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
+            wait.Until(driver => driver.WindowHandles.Count > windowHandlesBefore.Count);
+
+            // Switch to the new tab
+            foreach (string windowHandle in Driver.WindowHandles)
+            {
+                if (!windowHandlesBefore.Contains(windowHandle))
+                {
+                    Driver.SwitchTo().Window(windowHandle);
+                    break;
+                }
+            }
+        }
+
+        public void CloseCurrentTab()
+        {
+            // Close the current tab
+            Driver.Close();
+
+            // Switch back to the main window if there are multiple tabs
+            if (Driver.WindowHandles.Count > 1)
+            {
+                string mainWindowHandle = Driver.WindowHandles.First();
+                Driver.SwitchTo().Window(mainWindowHandle);
+            }
+        }
+
+        public void SwitchToMainTab()
+        {
+            // Switch back to the main tab or window
+            string mainTabHandle = Driver.WindowHandles.First();
+            Driver.SwitchTo().Window(mainTabHandle);
+        }
+
+        public void DoubleClickOnElement(By locator)
+        {
+            Actions action = new Actions(Driver);
+            IWebElement element = Driver.FindElement(locator);
+            action.DoubleClick(element).Build().Perform();
+        }
+
+       
     }
 }
 

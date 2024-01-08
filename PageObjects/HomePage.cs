@@ -36,8 +36,9 @@ namespace HumanforceAutomation.PageObjects
         }
 
         public void ClickOnMenuItem(string linkText)
-        {
+        {          
             By menuItem = By.LinkText(linkText);
+            AssertElementIsVisible(menuItem);
             ClickElement(menuItem);
         }
         public bool IsLogoVisible()

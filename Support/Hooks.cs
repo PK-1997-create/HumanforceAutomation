@@ -3,6 +3,10 @@ using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using HumanforceWebAutomation.Factories;
 using OpenQA.Selenium.Support.Extensions;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
+using Newtonsoft.Json;
+using HumanforceAutomation;
+using OpenQA.Selenium.Chrome;
 
 namespace HumanforceWebAutomation.Support
 {
@@ -17,7 +21,6 @@ namespace HumanforceWebAutomation.Support
         {
             _objectContainer = objectContainer;
         }
-
         // @TODO: DriverFactory for multi browser parallel execution
         [BeforeTestRun]
         public static void BeforeTestRun()
@@ -25,6 +28,7 @@ namespace HumanforceWebAutomation.Support
             _driverFactory = new DriverFactory();
             Directory.CreateDirectory(Path.Combine("..", "..", "TestResults"));
         }
+
 
         [BeforeScenario(Order = 0)]
         public void BeforeScenario()
@@ -44,7 +48,7 @@ namespace HumanforceWebAutomation.Support
             if (scenarioContext.TestError != null)
             {
                 // Save the screenshot with a unique name
-               // _driver.TakeScreenshot().SaveAsFile(Path.Combine("..", "..", "TestResults", $"{scenarioContext.ScenarioInfo.Title}.png"), ScreenshotImageFormat.png);
+                // _driver.TakeScreenshot().SaveAsFile(Path.Combine("..", "..", "TestResults", $"{scenarioContext.ScenarioInfo.Title}.png"), ScreenshotImageFormat.png);
             }
             _driver?.Dispose();
         }

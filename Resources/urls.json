@@ -1,0 +1,4 @@
+{
+  "baseUrl": "https://qatestchallenge.humanforce.io/",
+  "loginPage": "/Account/LogOn?ReturnUrl=%2f"
+}

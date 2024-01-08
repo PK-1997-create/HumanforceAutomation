@@ -3,6 +3,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium;
+using HumanforceAutomation;
 
 namespace HumanforceWebAutomation.Factories
 {
@@ -10,12 +11,23 @@ namespace HumanforceWebAutomation.Factories
     {
         public IWebDriver CreateDriver()
         {
-            string browser = Environment.GetEnvironmentVariable("BROWSER") ?? "CHROME";
+            TestSettings testSettings;
+            testSettings = ConfigurationHelper.GetTestSettings();
+            string browser = Environment.GetEnvironmentVariable("BROWSER") ?? testSettings.BrowserOption;
+
+            
 
             switch (browser.ToUpperInvariant())
             {
                 case "CHROME":
-                    return new ChromeDriver();
+                    // Set up Chrome options                   
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    if (testSettings.RunInHeadlessMode)
+                    {
+                        chromeOptions.AddArgument("--headless");
+                    }
+                    ChromeDriver chromeDriver = new ChromeDriver(chromeOptions);
+                    return chromeDriver;
                 case "FIREFOX":
                     return new FirefoxDriver();
                 case "IE":
