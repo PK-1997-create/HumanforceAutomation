@@ -1,5 +1,8 @@
-﻿
-Feature: Explore dashboard
+﻿Feature: Explore dashboard
+
+1.Authenticated user can access the dashboard, login successfully.
+2.Ensures that an employee, when attempting to access the EmployeeManagement page.
+3.Admin attempting to edit their own profile in the EmployeeManagement section 
 
 @smoke @dashboard
 Scenario: Verify authenticated user is able to access dashboard

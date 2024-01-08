@@ -1,10 +1,10 @@
 ﻿Feature: Explore home page
 
-A short summary of the feature
+Anonymous User wants to visit an article on the website
 
-@tag1
+@smoke
 Scenario: Anonymous User Explores Humanforce Website 
-	When I visit 'https://humanforce.com/au/'
+	When I visit 'https://humanforce.com/au'
 	Then I should see the Humanforce public homepage
 	And Verify Humanforce logo is visible
 	When I scroll to the bottom and select 'Time & Attendance'

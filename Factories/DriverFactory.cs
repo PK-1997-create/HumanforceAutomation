@@ -1,5 +1,4 @@
-﻿using System;
-using OpenQA.Selenium.Chrome;
+﻿using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium;
@@ -15,7 +14,7 @@ namespace HumanforceWebAutomation.Factories
             testSettings = ConfigurationHelper.GetTestSettings();
             string browser = Environment.GetEnvironmentVariable("BROWSER") ?? testSettings.BrowserOption;
 
-            
+
 
             switch (browser.ToUpperInvariant())
             {
@@ -26,6 +25,9 @@ namespace HumanforceWebAutomation.Factories
                     {
                         chromeOptions.AddArgument("--headless");
                     }
+                    chromeOptions.AddArguments("--allow-insecure-localhost");
+                    chromeOptions.AddArgument("--disable-gpu");
+                    chromeOptions.AddArgument("--window-size=1280,800");
                     ChromeDriver chromeDriver = new ChromeDriver(chromeOptions);
                     return chromeDriver;
                 case "FIREFOX":

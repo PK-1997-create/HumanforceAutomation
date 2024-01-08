@@ -26,7 +26,7 @@ namespace HumanforceAutomation.PageObjects
             {
                 if (acceptCookiesButton.Displayed && acceptCookiesButton.Enabled)
                 {
-                    acceptCookiesButton.Click();
+                    ClickElement(By.Id("cookiescript_accept"));                  
                 }
             }
             catch (NoSuchElementException)

@@ -1,6 +1,5 @@
 using HumanforceAutomation.PageObjects;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 
 namespace HumanforceAutomation.StepDefinitions
 {
@@ -36,7 +35,7 @@ namespace HumanforceAutomation.StepDefinitions
         [Then(@"I navigate back to the Home Page")]
         public void ThenINavigateBackToTheHomePage()
         {
-           _loginPage.NavigateToHomePage();
+            _loginPage.NavigateToHomePage();
             _loginPage.VerifyHomePageDisplayed();
         }
 

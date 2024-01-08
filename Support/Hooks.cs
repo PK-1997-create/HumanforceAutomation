@@ -1,12 +1,7 @@
 ﻿using BoDi;
 using OpenQA.Selenium;
-using TechTalk.SpecFlow;
 using HumanforceWebAutomation.Factories;
-using OpenQA.Selenium.Support.Extensions;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-using Newtonsoft.Json;
-using HumanforceAutomation;
-using OpenQA.Selenium.Chrome;
+
 
 namespace HumanforceWebAutomation.Support
 {
@@ -34,6 +29,7 @@ namespace HumanforceWebAutomation.Support
         public void BeforeScenario()
         {
             _driver = _driverFactory.CreateDriver();
+
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             _driver.Manage().Window.Maximize();
             ScenarioContext.Current["WebDriver"] = _driver;
