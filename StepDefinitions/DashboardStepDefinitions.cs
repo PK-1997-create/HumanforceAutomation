@@ -90,6 +90,7 @@ namespace HumanforceAutomation.StepDefinitions
         public void WhenIVisitEmployeeManagement()
         {
             _loginpage.NavigateToEmployeeManagementPage();
+            _basepage.ClosePopup();
         }
 
         [Then(@"I should see '([^']*)'")]
@@ -131,6 +132,12 @@ namespace HumanforceAutomation.StepDefinitions
         public void ThenVerifyThatTheSaveButtonIsNotVisible()
         {
             Assert.IsFalse(_dashboardPage.IsSaveButtonVisible(), "'Save' button is visible");
+        }
+
+        [When(@"I click '([^']*)' under the MESSAGES section")]
+        public void WhenIClickUnderTheMESSAGESSection(string messagesMenu)
+        {
+            _dashboardPage.ClickOnSpanLink(messagesMenu);
         }
 
     }

@@ -26,6 +26,7 @@ namespace HumanforceAutomation.PageObjects
         By popupWarningLocator(String warningtext) => By.XPath($"//div[text()='{warningtext}']");
         By buttonLocator(string buttonName) => By.XPath($"//button[contains(text(),'{buttonName}')]");
         By saveButtonLocator = By.XPath("//span[contains(.,'Save')]");
+        By spanLinkLocator(string linkText) => By.XPath($"//span[contains(.,'{linkText}')]");
         By linkButtonLocator(string linkText) => By.LinkText($"{linkText}");
 
         public bool IsDashboardDisplayed()
@@ -42,6 +43,11 @@ namespace HumanforceAutomation.PageObjects
         public void ClickOnHfAcademyButton()
         {
             ClickElement(HfAcademyButton);
+        }
+
+        public void ClickOnSpanLink(string linkText)
+        {
+            ClickElement(spanLinkLocator(linkText));
         }
 
         public bool IsHfAcademyPopupDisplayed()

@@ -4,7 +4,6 @@ A short summary of the feature
 
 @tag1
 Scenario: Anonymous User Explores Humanforce Website 
-	#Given As an anonymous User
 	When I visit 'https://humanforce.com/au/'
 	Then I should see the Humanforce public homepage
 	And Verify Humanforce logo is visible
